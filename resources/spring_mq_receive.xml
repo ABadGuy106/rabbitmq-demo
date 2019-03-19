@@ -51,9 +51,19 @@
     
 	<!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
     <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto">
-        <rabbit:listener ref="foo" method="litener" queue-names="myQueue"/>
+        <rabbit:listener ref="foo" method="onMessage" queue-names="myQueue"/>
     </rabbit:listener-container>
     <bean id="foo" class="com.huaxia.rabbitmq.demo.litener.QueueOneLitener"/>
+    
+    
+    <!--定义队列，自动声明-->
+    <rabbit:queue name="test_qu" auto-declare="true" durable="true"/>
+    
+	<!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto">
+        <rabbit:listener ref="foo1" method="onMessage" queue-names="test_qu"/>
+    </rabbit:listener-container>
+    <bean id="foo1" class="com.huaxia.rabbitmq.demo.litener.QueueOneLitener1"/>
 
 
 

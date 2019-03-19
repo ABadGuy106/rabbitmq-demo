@@ -13,11 +13,6 @@ public class RecvTest {
 	
 	private static final Logger logger= LoggerFactory.getLogger(RecvTest.class);
 
-	static String queueName = "send_to_test";
-	static boolean isDurable=true;
-
-	
-	
 	public static void main(String[] args) {
 		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring_mq_receive.xml");
 //		//创建队列
