@@ -12,14 +12,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 public class SendTest {
 
-	static String queueName = "send_to_test";
+	static String queueName = "test";
 	static boolean isDurable=true;
 
 	public static void main(String[] args) {
 		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring-rabbitmq-send.xml");
-		RabbitTemplate template = (RabbitTemplate) ctx.getBean("rabbitTemplate");
+		RabbitTemplate template = (RabbitTemplate) ctx.getBean("amqpTemplate");
 
-		//创建队列
+//		//创建队列
 		CreateQueueUtil.createQueue(queueName, isDurable);
 		
 		template.setRoutingKey(queueName);
